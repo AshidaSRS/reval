@@ -30,7 +30,7 @@
   [port & {:keys [local]}]
   {:pre [(and (pos? port) (< port 65536))]}
   (let [socket (if local
-                 (ServerSocket. port 0 (InetAddress/getLocalHost))
+                 (ServerSocket. port 0 (InetAddress/getByName "127.0.0.1"))
                  (ServerSocket. port))]
     (println "Server listening in" (net/str-socket socket))
     (while 1
